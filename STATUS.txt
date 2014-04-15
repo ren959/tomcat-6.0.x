@@ -1,0 +1,60 @@
+================================================================================
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+================================================================================
+
+                         =================================
+                         Apache Tomcat 6.0 Patch Proposals
+                         =================================
+
+
+RELEASE SHOWSTOPPERS:
+
+None
+
+
+PATCHES PROPOSED TO BACKPORT:
+  [ New proposals should be added at the end of the list ]
+
+* Remove svn keywords and similar constructs for other source code
+  management systems from schema and DTD files
+  1.
+    https://people.apache.org/~kkolinko/patches/2014-01-27_tc6_schemas_keywords.patch
+  2. 
+    svn propdel svn:keywords --depth files java/javax/servlet/resources
+    svn propdel svn:keywords --depth files java/javax/servlet/jsp/resources
+  (backport of r1561706)
+  +1: kkolinko, markt
+  -1:
+  rjung: Is it helpful to remove the old version tags? They carry the information
+         on which external varion the files were based on.
+
+  kkolinko: To me those tags say nothing and feel misleading, not
+         maintained and unmaintainable.
+
+         If the annotation says version "1.17 03/18/03", is it really that
+         version? If someone prints or copies the file, will such number on
+         a printed copy be correct? Unlikely. It feels more that it will
+         impersonate the correct "v1.17" that exists elsewhere.
+
+         The only reliable way to track history of such file is via its
+         actual history (in source code management system or via mail
+         archives). The first commit should have said where the file came
+         from.
+
+
+PATCHES/ISSUES THAT ARE STALLED:
+
+None
